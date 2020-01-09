@@ -6,7 +6,7 @@ public class TrgArea {
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
     public static void main(String[] args) {
-        double result = area(2,2,2);
+        double result = area(2, 2, 2);
         System.out.println("area (2, 2, 2) = " + result);
     }
 }
