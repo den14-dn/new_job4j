@@ -1,14 +1,27 @@
 package ru.job4j.oop;
 
 public class Cat {
-    public String sound() {
-        String voice = "may-may";
-        return voice;
+    private String food;
+    private String name;
+
+    public void show() {
+        System.out.println("There are " + this.name + "`s food." + this.food);
     }
+    public void eat(String meat) {
+        this.food = meat;
+    }
+    public void giveNick(String nick) {
+        this.name = nick;
+    }
+
     public static void main(String[] args) {
-        Cat peppy = new Cat();
-        //Cat sparky = new Cat();
-        String say = peppy.sound();
-        System.out.println("Peppy say " + say);
+        Cat gav = new Cat();
+        gav.eat("kotleta");
+        gav.giveNick("Gav");
+        gav.show();
+        Cat black = new Cat();
+        black.eat("fish");
+        black.giveNick("Black");
+        black.show();
     }
 }
