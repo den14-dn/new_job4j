@@ -25,10 +25,22 @@ public class Tracker {
         return item;
     }
 
+    /**
+     * Метод заменяет заявку найденную по индексу на новую заявку.
+     * @param id старой заявки.
+     * @param item новая заявка.
+     */
     public void replace(String id, Item item) {
         int index = indexOf(id);
         item.setId(id);
         items[index] = item;
+    }
+
+    public void delete(String id) {
+        int index = indexOf(id);
+        int size = items.length - index - 1;
+        System.arraycopy(items, index + 1, items, index, size);
+        items[items.length - 1] = null;
     }
 
     /**
@@ -41,7 +53,7 @@ public class Tracker {
 
         for (int index = 0; index != this.items.length; index++) {
             Item el = this.items[index];
-            if (el.getId().equals(id)) {
+            if (el != null && el.getId().equals(id)) {
                  result = index;
                  break;
             }
@@ -79,7 +91,12 @@ public class Tracker {
      * @return item
      */
     public Item findById(String id) {
-        return items[indexOf(id)];
+        int index = indexOf(id);
+        if (index < 0) {
+            return null;
+        } else {
+            return items[index];
+        }
     }
 
     /**
