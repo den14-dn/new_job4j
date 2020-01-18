@@ -25,6 +25,30 @@ public class Tracker {
         return item;
     }
 
+    public void replace(String id, Item item) {
+        int index = indexOf(id);
+        item.setId(id);
+        items[index] = item;
+    }
+
+    /**
+     * Метод возвращает index по переданному id элемента.
+     * @param id элемента из массива.
+     * @return index.
+     */
+    private int indexOf(String id) {
+        int result = -1;
+
+        for (int index = 0; index != this.items.length; index++) {
+            Item el = this.items[index];
+            if (el.getId().equals(id)) {
+                 result = index;
+                 break;
+            }
+        }
+        return result;
+    }
+
     /**
      * Метод возвращает из хранилища все созданные заявки
      * @return массив item'ов
@@ -55,12 +79,7 @@ public class Tracker {
      * @return item
      */
     public Item findById(String id) {
-        for (Item el : this.items) {
-            if (el.getId().equals(id)) {
-                return el;
-            }
-        }
-        return null;
+        return items[indexOf(id)];
     }
 
     /**
