@@ -32,8 +32,10 @@ public class Tracker {
      */
     public void replace(String id, Item item) {
         int index = indexOf(id);
-        item.setId(id);
-        items[index] = item;
+        if (index >= 0) {
+            item.setId(id);
+            items[index] = item;
+        }
     }
 
     public void delete(String id) {
