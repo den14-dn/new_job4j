@@ -51,7 +51,7 @@ public class Tracker {
     private int indexOf(String id) {
         int result = -1;
 
-        for (int index = 0; index != this.items.length; index++) {
+        for (int index = 0; index != this.position; index++) {
             Item el = this.items[index];
             if (el != null && el.getId().equals(id)) {
                  result = index;
