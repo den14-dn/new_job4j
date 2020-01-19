@@ -58,7 +58,7 @@ public class Tracker {
 
         for (int index = 0; index != this.position; index++) {
             Item el = this.items[index];
-            if (el != null && el.getId().equals(id)) {
+            if (el.getId().equals(id)) {
                  result = index;
                  break;
             }
@@ -82,8 +82,10 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] itemsWithoutNull = new Item[this.items.length];
         int size = 0;
-        for (Item el : this.items) {
-            if (el != null && el.getName().equals(key)) {
+
+        for (int index = 0; index < this.position; index++) {
+            Item el = this.items[index];
+            if (el.getName().equals(key)) {
                 itemsWithoutNull[size++] = el;
             }
         }
