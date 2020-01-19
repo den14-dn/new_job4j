@@ -75,14 +75,14 @@ public class Tracker {
      * @return массив item'ов
      */
     public Item[] findByName(String key) {
-        Item[] copyItems = Arrays.copyOf(this.items, this.items.length);
-        int index = 0;
+        Item[] itemsWithoutNull = new Item[this.items.length];
+        int size = 0;
         for (Item el : this.items) {
             if (el != null && el.getName().equals(key)) {
-                copyItems[index++] = el;
+                itemsWithoutNull[size++] = el;
             }
         }
-        return Arrays.copyOf(copyItems, index);
+        return Arrays.copyOf(itemsWithoutNull, size);
     }
 
     /**
@@ -91,12 +91,12 @@ public class Tracker {
      * @return item
      */
     public Item findById(String id) {
+        Item result = null;
         int index = indexOf(id);
-        if (index < 0) {
-            return null;
-        } else {
+        if (index >= 0) {
             return items[index];
         }
+        return result;
     }
 
     /**
