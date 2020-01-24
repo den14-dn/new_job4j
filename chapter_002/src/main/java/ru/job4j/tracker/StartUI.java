@@ -1,8 +1,51 @@
 package ru.job4j.tracker;
 
-import java.util.Scanner;
-
 public class StartUI {
+
+    public static void createItem(Input input, Tracker tracker) {
+        System.out.println("==== Create a new Item ====");
+        String name = input.askStr("Enter name: ");
+        Item item = new Item(name);
+        tracker.add(item);
+    }
+
+    public static void showAllItem(Tracker tracker) {
+        System.out.println("==== Show all items ====");
+        Item[] items = tracker.findAll();
+        for (Item el : items) {
+            System.out.println("Item: " + el.getName() + ", id: " + el.getId());
+        }
+    }
+
+    public static void editItem(Input input, Tracker tracker) {
+        System.out.println("==== Edit item ====");
+        String id = input.askStr("Enter id: ");
+        String name = input.askStr("Enter new name: ");
+        Item item = new Item(name);
+        tracker.replace(id, item);
+    }
+
+    public static void deleteItem(Input input, Tracker tracker) {
+        System.out.println("==== Delete item ====");
+        String id = input.askStr("Enter id: ");
+        tracker.delete(id);
+    }
+
+    public static void findItemById(Input input, Tracker tracker) {
+        System.out.println("==== Find item by id ====");
+        String id = input.askStr("Enter id: ");
+        Item item = tracker.findById(id);
+        System.out.println("Item: " + item.getName() + ", id: " + item.getId());
+    }
+
+    public static void findItemsByName(Input input, Tracker tracker) {
+        System.out.println("==== Find items by name ====");
+        String name = input.askStr("Enter name: ");
+        Item[] items = tracker.findByName(name);
+        for (Item el : items) {
+            System.out.println("Item: " + el.getName() + ", id: " + el.getId());
+        }
+    }
 
     public void init(Input input, Tracker tracker) {
         boolean run = true;
@@ -10,38 +53,17 @@ public class StartUI {
             this.showMenu();
             int select = input.askInt("Select:   ");
             if (select == 0) {
-                System.out.println("==== Create a new Item ====");
-                String name = input.askStr("Enter name: ");
-                Item item = new Item(name);
-                tracker.add(item);
+                StartUI.createItem(input, tracker);
             } else if (select == 1) {
-                System.out.println("==== Show all items ====");
-                Item[] items = tracker.findAll();
-                for (Item el : items) {
-                    System.out.println("Item: " + el.getName() + ", id: " + el.getId());
-                }
+                StartUI.showAllItem(tracker);
             } else if (select == 2) {
-                System.out.println("==== Edit item ====");
-                String id = input.askStr("Enter id: ");
-                String name = input.askStr("Enter new name: ");
-                Item item = new Item(name);
-                tracker.replace(id, item);
+                StartUI.editItem(input, tracker);
             } else if (select == 3) {
-                System.out.println("==== Delete item ====");
-                String id = input.askStr("Enter id: ");
-                tracker.delete(id);
+                StartUI.deleteItem(input, tracker);
             } else if (select == 4) {
-                System.out.println("==== Find item by id ====");
-                String id = input.askStr("Enter id: ");
-                Item item = tracker.findById(id);
-                System.out.println("Item: " + item.getName() + ", id: " + item.getId());
+                StartUI.findItemById(input, tracker);
             } else if (select == 5) {
-                System.out.println("==== Find items by name ====");
-                String name = input.askStr("Enter name: ");
-                Item[] items = tracker.findByName(name);
-                for (Item el : items) {
-                    System.out.println("Item: " + el.getName() + ", id: " + el.getId());
-                }
+                StartUI.findItemsByName(input, tracker);
             } else if (select == 6){
                 System.out.println("==== Exit program ====");
                 run = false;
