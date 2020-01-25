@@ -30,22 +30,28 @@ public class Tracker {
      * @param id старой заявки.
      * @param item новая заявка.
      */
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        boolean result = false;
         int index = indexOf(id);
         if (index >= 0) {
             item.setId(id);
             items[index] = item;
+            result = true;
         }
+        return result;
     }
 
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean result = false;
         int index = indexOf(id);
         if (index >= 0) {
             int size = items.length - index - 1;
             System.arraycopy(items, index + 1, items, index, size);
             items[items.length - 1] = null;
             position--;
+            result = true;
         }
+        return result;
     }
 
     /**
