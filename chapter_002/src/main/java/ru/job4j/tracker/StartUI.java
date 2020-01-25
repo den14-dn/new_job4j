@@ -78,7 +78,7 @@ public class StartUI {
                 StartUI.findItemById(input, tracker);
             } else if (select == 5) {
                 StartUI.findItemsByName(input, tracker);
-            } else if (select == 6){
+            } else if (select == 6) {
                 System.out.println("==== Exit program ====");
                 run = false;
             }
