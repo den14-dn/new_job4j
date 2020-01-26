@@ -1,5 +1,7 @@
 package ru.job4j.stragery;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -9,48 +11,21 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class PaintTest {
-    @Test
-    public void whenSquare() {
-        Square square = new Square();
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("+ + + + +");
-        sb.append(System.lineSeparator());
-        sb.append("+ + + + +");
-        sb.append(System.lineSeparator());
-        sb.append("+ + + + +");
-        sb.append(System.lineSeparator());
-        sb.append("+ + + + +");
-        sb.append(System.lineSeparator());
-        sb.append("+ + + + +");
-
-        assertThat(square.draw(), is(sb.toString()));
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(this.out));
     }
 
-    @Test
-    public void whenTriangle() {
-        Triangle triangle = new Triangle();
-
-        StringBuilder trg = new StringBuilder();
-        trg.append("    +    ");
-        trg.append(System.lineSeparator());
-        trg.append("   +++   ");
-        trg.append(System.lineSeparator());
-        trg.append("  +++++  ");
-        trg.append(System.lineSeparator());
-        trg.append(" +++++++ ");
-        trg.append(System.lineSeparator());
-        trg.append("+++++++++");
-
-        assertThat(triangle.draw(), is(trg.toString()));
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
     }
 
     @Test
     public void whenDrawSquare() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         new Paint().draw(new Square());
         assertThat(new String(out.toByteArray()),
                 is(new StringBuilder().append("+ + + + +")
@@ -65,6 +40,23 @@ public class PaintTest {
                     .append(System.lineSeparator()).toString()
                 )
         );
-        System.setOut(stdout);
+    }
+
+    @Test
+    public void whenDrawTriangle() {
+        new Paint().draw(new Triangle());
+        assertThat(new String(out.toByteArray()),
+                is(new StringBuilder().append("    +    ")
+                    .append(System.lineSeparator())
+                    .append("   +++   ")
+                    .append(System.lineSeparator())
+                    .append("  +++++  ")
+                    .append(System.lineSeparator())
+                    .append(" +++++++ ")
+                    .append(System.lineSeparator())
+                    .append("+++++++++")
+                   .append(System.lineSeparator()).toString()
+                )
+        );
     }
 }
