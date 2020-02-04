@@ -15,11 +15,11 @@ public class ValidateInputTest {
         System.setOut(new PrintStream(mem));
 
         String[] data = {"one", "1"};
-        ValidateInput input = new ValidateStubInput(data);
+        ValidateInput input = new ValidateInput(new StubInput(data));
         input.askInt("Enter");
         assertThat(
                 mem.toString(),
-                is(String.format("Please enter validate data again.%n"))
+                is(String.format("Please select validate data again.%n"))
         );
 
         System.setOut(out);
