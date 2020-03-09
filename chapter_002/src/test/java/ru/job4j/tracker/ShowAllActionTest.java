@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.StringJoiner;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -19,7 +20,8 @@ public class ShowAllActionTest {
         Item item = new Item("fix bug");
         tracker.add(item);
         ShowAllAction act = new ShowAllAction();
-        act.execute(new StubInput(new String[] {}), tracker);
+        ArrayList<String> list = new ArrayList<>();
+        act.execute(new StubInput(list), tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Item: " + item.getName() + ", id: " + item.getId())
                 .toString();

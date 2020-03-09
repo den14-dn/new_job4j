@@ -37,8 +37,10 @@ public class ValidateInput implements Input {
                 invalid = false;
             } catch (IllegalStateException moe) {
                 System.out.println("Please select key from menu.");
+                invalid = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("Please select validate data again.");
+                invalid = false;
             }
         } while (invalid);
         return value;
