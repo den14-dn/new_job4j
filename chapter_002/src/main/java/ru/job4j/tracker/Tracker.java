@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -7,7 +8,7 @@ public class Tracker {
     /**
      * Массив для хранения заявок.
      */
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Метод добавления заявки в хранилище
@@ -68,7 +69,7 @@ public class Tracker {
      * Метод возвращает из хранилища все созданные заявки
      * @return массив item'ов
      */
-    public ArrayList<Item> findAll() {
+    public List<Item> findAll() {
         return this.items;
     }
 
