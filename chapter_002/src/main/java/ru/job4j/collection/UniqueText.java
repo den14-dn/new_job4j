@@ -12,7 +12,7 @@ public class UniqueText {
             check.add(el);
         }
         for (String el : text) {
-            if (check.contains(el) != true) {
+            if (!check.contains(el)) {
                 rsl = false;
                 break;
             }
