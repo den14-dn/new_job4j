@@ -7,18 +7,19 @@ public class StringCompare implements Comparator<String> {
     public int compare(String left, String right) {
         int rst = 0;
 
+        if (Integer.compare(left.length(), right.length()) > 0) {
+            rst = 1;
+        }
+
         int size = Math.min(left.length(), right.length());
         for (int index = 0; index < size; index++) {
             char charLeft = left.charAt(index);
             char charRight = right.charAt(index);
-            rst = Character.compare(charLeft, charRight);
-            if (rst != 0) {
+            int rstChar = Character.compare(charLeft, charRight);
+            if (rstChar != 0) {
+                rst = rstChar;
                 break;
             }
-        }
-
-        if (rst == 0 && left.length() < right.length()) {
-            rst = -1;
         }
 
         return rst;
