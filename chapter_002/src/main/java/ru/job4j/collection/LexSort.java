@@ -13,19 +13,9 @@ public class LexSort implements Comparator<String> {
     private int toNumber(String value) {
         int rst = -1;
 
-        String numeral = "0123456789";
-        String number = "";
-
-        for (int index = 0; index < value.length(); index++) {
-            char symbol = value.charAt(index);
-            if (numeral.indexOf(symbol) < 0) {
-                break;
-            }
-            number = number.concat(String.valueOf(symbol));
-        }
-
-        if (number != "") {
-            rst = Integer.valueOf(number);
+        String[] words = value.split(".");
+        if (words.length > 0) {
+            rst = Integer.valueOf(words[0]);
         }
 
         return rst;
