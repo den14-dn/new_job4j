@@ -1,14 +1,8 @@
+[![Build Status](https://travis-ci.org/den14-dn/new_job4j.svg?branch=master)](https://travis-ci.org/den14-dn/new_job4j)
+
+
+[![codecov](https://codecov.io/gh/den14-dn/new_job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/den14-dn/new_job4j)
+
+
 # new_job4j
-# change README.md
-
-Объединение зафиксированных измененЕй
-
-Работа в IDEA.
-
-Изменения для решения задачи.
-
-Изменения по задаче 139841
-
-В курсе производилась работа в ветках git.
-
-Создание ветки из IDEA.
+Начальный проект для курса job4j
