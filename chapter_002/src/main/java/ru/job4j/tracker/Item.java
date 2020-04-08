@@ -26,8 +26,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Item{" + "name='" + name + '\'' + '}';
     }
 }

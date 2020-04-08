@@ -6,7 +6,7 @@ public class Fact {
     }
 
     public int calc(int n) {
-        if (n < 1){
+        if (n < 1) {
             throw new IllegalArgumentException("Argument 'n' must be greater 0");
         }
         int rsl = 1;
