@@ -13,7 +13,7 @@ public class LexSort implements Comparator<String> {
     private int toNumber(String value) {
         int rst = -1;
 
-        String[] words = value.split(".");
+        String[] words = value.split(". ");
         if (words.length > 0) {
             rst = Integer.valueOf(words[0]);
         }
