@@ -13,13 +13,14 @@ public class Departments {
             }
         }
         List<String> rst = new ArrayList<>(tmp);
-        Collections.sort(rst);
         return rst;
     }
 
     public static void sortAsc(List<String> orgs) {
+        Collections.sort(orgs);
     }
 
     public static void sortDesc(List<String> orgs) {
+        Collections.sort(orgs, Collections.reverseOrder());
     }
 }
