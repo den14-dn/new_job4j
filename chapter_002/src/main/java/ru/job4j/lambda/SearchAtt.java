@@ -2,37 +2,26 @@ package ru.job4j.lambda;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class SearchAtt {
     public static List<Attachment> filterSize(List<Attachment> list) {
-        Function<Attachment, Boolean> func = new Function<Attachment, Boolean>() {
-            @Override
-            public Boolean apply(Attachment attachment) {
-                return attachment.getSize() > 100;
-            }
-        };
-        return filter(list, func);
+        List<Attachment> rst = filter(list, el -> el.getSize() > 100);
+        return rst;
     }
 
     public static List<Attachment> filterName(List<Attachment> list) {
-        Function<Attachment, Boolean> func = new Function<Attachment, Boolean>() {
-            @Override
-            public Boolean apply(Attachment attachment) {
-                return attachment.getName().contains("bug");
-            }
-        };
-        return filter(list, func);
+        List<Attachment> rst = filter(list, el -> el.getName().contains("bug"));
+        return rst;
     }
 
-    private static List<Attachment> filter(List<Attachment> list, Function<Attachment, Boolean> func) {
-        List<Attachment> rsl = new ArrayList<>();
+    private static List<Attachment> filter(List<Attachment> list, Predicate<Attachment> predicate) {
+        List<Attachment> rst = new ArrayList<>();
         for (Attachment el : list) {
-            if (func.apply(el)) {
-                rsl.add(el);
+            if (predicate.test(el)) {
+                rst.add(el);
             }
         }
-        return rsl;
+        return rst;
     }
 }
