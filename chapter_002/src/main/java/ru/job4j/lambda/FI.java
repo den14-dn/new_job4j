@@ -24,7 +24,7 @@ public class FI {
                 return o1.getSize() - o2.getSize();
             }
         };
-//        Comparator<Attachment> comparator = (Attachment o1, Attachment o2) -> o1.getSize() - o2.getSize();
+//        Comparator<Attachment> comparator = (o1, o2) -> o1.getSize() - o2.getSize();
         Arrays.sort(atts, comparator);
 
         raw(Arrays.asList(atts), new Function<Attachment, InputStream>() {
