@@ -1,7 +1,9 @@
 package ru.job4j.lambda;
 
-import ru.job4j.oop.Student;
+import ru.job4j.pojo.Student;
+import ru.job4j.pojo.Mark;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,20 +24,36 @@ public class FI {
                 return o1.getSize() - o2.getSize();
             }
         };
+//        Comparator<Attachment> comparator = (Attachment o1, Attachment o2) -> o1.getSize() - o2.getSize();
         Arrays.sort(atts, comparator);
 
-        List<Attachment> list = Arrays.asList(atts);
-        raw(list, new Function<Attachment, InputStream>() {
-                @Override
-                public InputStream apply(Attachment attachment) {
-                    return null;
-                }
-            });
+        raw(Arrays.asList(atts), new Function<Attachment, InputStream>() {
+            @Override
+            public InputStream apply(Attachment att) {
+                return new ByteArrayInputStream(att.toString().getBytes());
+            }
+        });
+        raw(Arrays.asList(atts), att -> {
+            return new ByteArrayInputStream(att.toString().getBytes());
+        });
+
+        Student student = new Mark();
+        test(student, new Function<Student, Mark>() {
+            @Override
+            public Mark apply(Student student) {
+                return (Mark) student;
+            }
+        });
+        test(student, st -> (Mark) st);
     }
 
     public static void raw(List<Attachment> list, Function<Attachment, InputStream> func) {
         for (Attachment att : list) {
             func.apply(att);
         }
+    }
+
+    public static void test(Student student, Function<Student, Mark> func) {
+        Mark mark = func.apply(student);
     }
 }
