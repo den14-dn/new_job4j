@@ -37,6 +37,14 @@ public class FI {
             return new ByteArrayInputStream(att.toString().getBytes());
         });
 
+        Comparator<Student> compStudent = new Comparator<Student>() {
+            @Override
+            public int compare(Student st1, Student st2) {
+                return st1.getFio().compareTo(st2.getFio());
+            }
+        };
+        Comparator<Student> compStLambda = (st1, st2) -> st1.getFio().compareTo(st2.getFio());
+
         Student student = new Mark();
         test(student, new Function<Student, Mark>() {
             @Override
