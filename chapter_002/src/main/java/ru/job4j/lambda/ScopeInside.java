@@ -1,6 +1,7 @@
 package ru.job4j.lambda;
 
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public class ScopeInside {
     public static void main(String[] args) {
@@ -8,11 +9,11 @@ public class ScopeInside {
         int total = 0;
         for (int i = 0; i < number.length; i++) {
             int num = i;
-            total = add(total, num, (s1, s2) -> s1 + s2);
+            total += add(() -> num);
         }
         System.out.println(total);
     }
-    private static Integer add(Integer s1, Integer s2, BiFunction<Integer, Integer, Integer> func) {
-        return func.apply(s1, s2);
+    private static Integer add(Supplier<Integer> calc) {
+        return calc.get();
     }
 }
