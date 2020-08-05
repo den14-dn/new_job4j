@@ -1,0 +1,52 @@
+package ru.job4j.stream;
+
+import org.junit.Test;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import java.util.List;
+
+public class SchoolTest {
+    @Test
+    public void whenStudentsFor10V() {
+        Student st1 = new Student(29, "Сударев");
+        Student st2 = new Student(50, "Толстой");
+        Student st3 = new Student(72, "Беспалов");
+
+        List<Student> students = List.of(st1, st2, st3);
+
+        School school = new School();
+        List<Student> rst = school.collect(students, el -> el.getScore() > 0 && el.getScore() < 50);
+
+        List<Student> exp = List.of(st1);
+        assertThat(rst, is(exp));
+    }
+    @Test
+    public void whenStudentsFor10B() {
+        Student st1 = new Student(29, "Сударев");
+        Student st2 = new Student(50, "Толстой");
+        Student st3 = new Student(72, "Беспалов");
+
+        List<Student> students = List.of(st1, st2, st3);
+
+        School school = new School();
+        List<Student> rst = school.collect(students, el -> el.getScore() >= 50 && el.getScore() < 70);
+
+        List<Student> exp = List.of(st2);
+        assertThat(rst, is(exp));
+    }
+    @Test
+    public void whenStudentsFor10A() {
+        Student st1 = new Student(29, "Сударев");
+        Student st2 = new Student(50, "Толстой");
+        Student st3 = new Student(72, "Беспалов");
+
+        List<Student> students = List.of(st1, st2, st3);
+
+        School school = new School();
+        List<Student> rst = school.collect(students, el -> el.getScore() >= 70 && el.getScore() <= 100);
+
+        List<Student> exp = List.of(st3);
+        assertThat(rst, is(exp));
+    }
+}
