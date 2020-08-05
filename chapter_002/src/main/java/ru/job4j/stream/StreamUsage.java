@@ -26,22 +26,14 @@ public class StreamUsage {
     public static void main(String[] args) {
         // 1
         List<Task> tasks = List.of(
-                new Task("Bug #1", 100),
-                new Task("Task #2", 100),
-                new Task("Bug #3", 100)
+                new Task("Bug #1", 10),
+                new Task("Task #2", 20),
+                new Task("Bug #3", 40)
         );
-        List<Task> bugs = tasks.stream().filter(element -> element.name.contains("Bug")).collect(Collectors.toList());
-        bugs.forEach(System.out::println);
-
-        // 2
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(0);
-        arrayList.add(2);
-        arrayList.add(5);
-        arrayList.add(-3);
-        arrayList.add(6);
-        arrayList.add(9);
-        List<Integer> list = arrayList.stream().filter(el -> el >= 0).collect(Collectors.toList());
-        System.out.println(list);
+        tasks.stream()
+                .filter(element -> element.name.contains("Bug"))
+                .filter(element -> element.spent > 30)
+                .map(element -> element.name + " " + element.spent)
+                .forEach(System.out::println);
     }
 }
