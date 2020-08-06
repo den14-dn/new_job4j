@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import java.util.List;
+import java.util.Map;
 
 public class SchoolTest {
     @Test
@@ -16,9 +17,9 @@ public class SchoolTest {
         List<Student> students = List.of(st1, st2, st3);
 
         School school = new School();
-        List<Student> rst = school.collect(students, el -> el.getScore() > 0 && el.getScore() < 50);
+        Map<String, Student> rst = school.collect(students, el -> el.getScore() > 0 && el.getScore() < 50);
 
-        List<Student> exp = List.of(st1);
+        Map<String, Student> exp = Map.of(st1.getSurname(), st1);
         assertThat(rst, is(exp));
     }
     @Test
@@ -30,9 +31,9 @@ public class SchoolTest {
         List<Student> students = List.of(st1, st2, st3);
 
         School school = new School();
-        List<Student> rst = school.collect(students, el -> el.getScore() >= 50 && el.getScore() < 70);
+        Map<String, Student> rst = school.collect(students, el -> el.getScore() >= 50 && el.getScore() < 70);
 
-        List<Student> exp = List.of(st2);
+        Map<String, Student> exp = Map.of(st2.getSurname(), st2);
         assertThat(rst, is(exp));
     }
     @Test
@@ -44,9 +45,9 @@ public class SchoolTest {
         List<Student> students = List.of(st1, st2, st3);
 
         School school = new School();
-        List<Student> rst = school.collect(students, el -> el.getScore() >= 70 && el.getScore() <= 100);
+        Map<String, Student> rst = school.collect(students, el -> el.getScore() >= 70 && el.getScore() <= 100);
 
-        List<Student> exp = List.of(st3);
+        Map<String, Student> exp = Map.of(st3.getSurname(), st3);
         assertThat(rst, is(exp));
     }
 }
