@@ -41,8 +41,9 @@ public class SchoolTest {
         Student st1 = new Student(29, "Сударев");
         Student st2 = new Student(50, "Толстой");
         Student st3 = new Student(72, "Беспалов");
+        Student st4 = new Student(72, "Беспалов");
 
-        List<Student> students = List.of(st1, st2, st3);
+        List<Student> students = List.of(st1, st2, st3, st4);
 
         School school = new School();
         Map<String, Student> rst = school.collect(students, el -> el.getScore() >= 70 && el.getScore() <= 100);

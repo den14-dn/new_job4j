@@ -9,6 +9,6 @@ public class School {
     Map<String, Student> collect(List<Student> students, Predicate<Student> predicate) {
         return students.stream()
                 .filter(predicate)
-                .collect(Collectors.toMap(el -> el.getSurname(), el -> el));
+                .collect(Collectors.toMap(Student::getSurname, el -> el, (el, el2) -> el));
     }
 }
